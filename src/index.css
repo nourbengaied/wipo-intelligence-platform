@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* IES Bloom Design System - Dual Interface */
+
+@layer base {
+  :root {
+    /* External Interface - Blue, open, approachable */
+    --background: 210 100% 97%;
+    --foreground: 210 80% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 80% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 80% 12%;
+
+    --primary: 210 100% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 100% 92%;
+    --secondary-foreground: 210 100% 25%;
+
+    --muted: 210 40% 94%;
+    --muted-foreground: 210 20% 45%;
+
+    --accent: 200 100% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 30% 88%;
+    --input: 210 30% 88%;
+    --ring: 210 100% 40%;
+
+    --radius: 0.5rem;
+
+    /* Success/Warning/Info */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 0%;
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210 100% 40%), hsl(200 100% 45%));
+    --gradient-hero: linear-gradient(180deg, hsl(210 100% 97%), hsl(210 100% 92%));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(210 30% 80% / 0.2);
+    --shadow-md: 0 4px 6px -1px hsl(210 30% 70% / 0.15), 0 2px 4px -1px hsl(210 30% 70% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(210 30% 60% / 0.1), 0 4px 6px -2px hsl(210 30% 60% / 0.05);
+
+    /* Sidebar */
+    --sidebar-background: 210 100% 40%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 210 100% 40%;
+    --sidebar-accent: 210 100% 35%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 210 100% 35%;
+    --sidebar-ring: 200 100% 45%;
+  }
+
+  /* Internal Interface Theme - Slate/Charcoal, professional, analytical */
+  .internal-theme {
+    --background: 220 14% 96%;
+    --foreground: 224 71% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+
+    --primary: 220 70% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 90%;
+    --secondary-foreground: 220 9% 46%;
+
+    --muted: 220 14% 94%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 142 76% 36%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 87%;
+    --input: 220 13% 87%;
+    --ring: 220 70% 50%;
+
+    /* Internal gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(220 70% 50%), hsl(200 70% 55%));
+    --gradient-hero: linear-gradient(180deg, hsl(220 14% 96%), hsl(220 14% 92%));
+
+    /* Internal sidebar - darker */
+    --sidebar-background: 224 71% 8%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 220 70% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 13% 20%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 220 13% 15%;
+    --sidebar-ring: 220 70% 50%;
+  }
+
+  .dark {
+    --background: 210 60% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 210 50% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 210 50% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 18%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 15%;
+    --muted-foreground: 210 20% 65%;
+
+    --accent: 200 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 40% 20%;
+    --input: 210 40% 20%;
+    --ring: 210 100% 50%;
+
+    --success: 142 76% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 60%;
+    --warning-foreground: 0 0% 0%;
+    --info: 199 89% 55%;
+    --info-foreground: 0 0% 100%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(210 100% 50%), hsl(200 100% 55%));
+    --gradient-hero: linear-gradient(180deg, hsl(210 60% 8%), hsl(210 50% 12%));
+
+    --sidebar-background: 210 60% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 210 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 210 40% 15%;
+    --sidebar-ring: 200 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+/* Custom scrollbar for internal interface */
+.internal-theme ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.internal-theme ::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+.internal-theme ::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+.internal-theme ::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
