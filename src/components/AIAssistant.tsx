@@ -61,33 +61,45 @@ const AIAssistant = ({ context }: AIAssistantProps) => {
   }, [isOpen]);
 
   const getWelcomeMessage = () => {
-    const baseMessage = "Hello! I'm your WIPO AI Assistant, here to help you with IP policies, resources, and guidance.";
+    const baseMessage = "Hello! I'm your WIPO AI Assistant.";
+    
+    if (context?.page === "country-selection") {
+      return `${baseMessage}\n\n**Select a country** from the list to explore IP resources. Need help choosing? Ask me about any country's IP framework or available resources.`;
+    }
     
     if (context?.countryName) {
-      return `${baseMessage}\n\nI see you're exploring resources for **${context.countryName}**. I can help you with country-specific IP information, policy guidance, and more!\n\nHow can I assist you today?`;
+      return `${baseMessage}\n\nYou're viewing **${context.countryName}**. **Choose a resource category** (Reports or IP Tools) to continue, or ask me about this country's IP resources.`;
     }
     
     if (context?.page === "policy-toolkit") {
-      return `${baseMessage}\n\n**You're on the IP Policy Toolkit!**\n\nI can help you:\n• Understand and customize policy articles\n• Draft institution-specific policy language\n• Get recommendations based on your context\n• Navigate the 15-article template\n• Answer questions about best practices\n\nWhat would you like to work on?`;
+      return `${baseMessage}\n\n**Start customizing** policy articles from the 15-article IP Policy Template.\n\nI can help you:\n• Draft institution-specific policy language\n• Understand and adapt specific articles\n• Get recommendations for your context\n• Navigate best practices`;
     }
 
     if (context?.page === "policies-database") {
-      return `${baseMessage}\n\n**You're on the Policies Database!**\n\nI can help you:\n• Find relevant institutional policies\n• Understand different policy approaches\n• Compare policies across institutions\n• Interpret policy language and clauses\n\nWhat are you looking for?`;
+      return `${baseMessage}\n\n**Browse or search** for institutional IP policies from around the world.\n\nI can help you:\n• Find relevant policies by institution type or region\n• Compare different policy approaches\n• Interpret policy language and clauses\n• Understand implementation strategies`;
     }
 
     if (context?.page === "policy-model") {
-      return `${baseMessage}\n\n**You're viewing a Policy Model!**\n\nI can help you:\n• Understand the policy framework\n• Adapt the model to your institution\n• Explain specific articles or clauses\n• Guide implementation strategies\n\nHow can I assist?`;
+      return `${baseMessage}\n\n**Review the policy model** below. Ask me to explain specific articles or help adapt the framework to your institution.`;
     }
     
     if (context?.page === "ip-tools") {
-      return `${baseMessage}\n\nI can help you navigate IP tools, understand policy frameworks, and guide you through the policy toolkit.\n\nWhat would you like to know?`;
+      return `${baseMessage}\n\n**Select an IP tool** to explore, or ask me about policy frameworks and available resources.`;
     }
 
     if (context?.page === "ip-policies") {
-      return `${baseMessage}\n\nI can assist you with:\n• Understanding IP policy frameworks\n• Customizing policy templates\n• Navigating institutional policies\n• Drafting assistance\n\nWhat can I help you with?`;
+      return `${baseMessage}\n\n**Choose a policy resource** (Model, Toolkit, or Database), or ask me for guidance on IP policy frameworks.`;
     }
 
-    return `${baseMessage}\n\nI can assist you with:\n• IP policy guidance and best practices\n• Country-specific IP information\n• WIPO resources and tools\n• Policy drafting and customization\n\nHow can I help you today?`;
+    if (context?.page === "reports") {
+      return `${baseMessage}\n\n**Browse the reports** below, or ask me to help you find specific information.`;
+    }
+
+    if (context?.page === "benchbook") {
+      return `${baseMessage}\n\n**Explore the benchbook resources** below, or ask me questions about IP benchmarking.`;
+    }
+
+    return `${baseMessage}\n\nI can help with IP policies, country-specific information, and WIPO resources. What would you like to know?`;
   };
 
   const getSystemPrompt = () => {
@@ -115,6 +127,7 @@ const AIAssistant = ({ context }: AIAssistantProps) => {
     
     if (context?.page) {
       const pageContext: Record<string, string> = {
+        "country-selection": "The user is on the Country Selection page, browsing through the list of countries to explore IP resources and policies.",
         "ip-tools": "The user is on the IP Tools page, exploring available tools and resources.",
         "ip-policies": "The user is on the IP Policies page, looking at policy frameworks and templates.",
         "policy-toolkit": "The user is on the WIPO IP Policy Toolkit page - an AI-powered tool for customizing the IP Policy Template for Academic and Research Institutions. This toolkit helps users interactively customize policy articles, get drafting assistance, and generate institution-specific policy language.",
@@ -124,6 +137,17 @@ const AIAssistant = ({ context }: AIAssistantProps) => {
         "benchbook": "The user is exploring the IP Benchbook resources.",
       };
       contextInfo += ` ${pageContext[context.page] || ""}`;
+      
+      // Add country selection context
+      if (context.page === "country-selection") {
+        contextInfo += `\n\nOn this page, users can:
+- Browse all available countries
+- Search for specific countries
+- Learn about available resources for each country
+- Select a country to explore detailed IP tools, policies, and reports
+
+Help users understand what resources are available and guide them in choosing which country to explore.`;
+      }
       
       // Add specific toolkit context
       if (context.page === "policy-toolkit") {

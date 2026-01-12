@@ -35,6 +35,8 @@ const AIAssistantWrapper = () => {
     page = "reports";
   } else if (location.pathname.includes("/benchbook")) {
     page = "benchbook";
+  } else if (location.pathname === "/external") {
+    page = "country-selection";
   }
 
   // Get country context

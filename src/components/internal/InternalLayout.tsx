@@ -145,12 +145,21 @@ const InternalLayout = () => {
             </h1>
           </div>
 
-          <Link
-            to="/external"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Switch to External →
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              to="/"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              ← Home
+            </Link>
+            <span className="text-muted-foreground">|</span>
+            <Link
+              to="/external"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Switch to External →
+            </Link>
+          </div>
         </header>
 
         {/* Page content */}

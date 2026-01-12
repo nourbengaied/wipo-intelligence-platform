@@ -1,10 +1,23 @@
 import CountryList from "@/components/CountryList";
-import { Globe } from "lucide-react";
+import { Globe, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-gradient-hero">
       <div className="container mx-auto px-4 py-12 max-w-5xl">
+        <Button
+          variant="ghost"
+          onClick={() => navigate("/")}
+          className="mb-6 hover:bg-secondary"
+        >
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back to Interface Selection
+        </Button>
+
         <div className="text-center mb-12">
           <div className="flex justify-center mb-6">
             <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center shadow-lg">

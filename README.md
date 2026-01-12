@@ -1,4 +1,31 @@
-# Welcome to your Lovable project
+# IES Bloom - WIPO Country Insights Platform
+
+A modern web application for exploring intellectual property (IP) resources, policies, and tools by country, powered by AI assistance.
+
+## 🚀 Quick Start for New Developers
+
+**Want to run this locally?** See **[SETUP.md](./SETUP.md)** for detailed instructions.
+
+### Super Quick Setup (3 steps)
+
+```sh
+# 1. Clone and install
+git clone <YOUR_GIT_URL>
+cd remix-of-wipo-country-insights-81
+npm install
+
+# 2. Configure AWS (interactive)
+npm run setup
+
+# 3. Start development server
+npm run dev
+```
+
+That's it! Open http://localhost:5173
+
+> **Note**: AWS Bedrock credentials are only needed for the AI Assistant. All other features work without them.
+
+---
 
 ## Project info
 
