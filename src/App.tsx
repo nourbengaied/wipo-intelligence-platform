@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import AIAssistantWrapper from "@/components/AIAssistantWrapper";
 
 // Landing
 import Landing from "./pages/Landing";
@@ -39,6 +40,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <AIAssistantWrapper />
         <Routes>
           {/* Landing - Interface Selector */}
           <Route path="/" element={<Landing />} />

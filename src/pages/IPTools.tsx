@@ -67,7 +67,7 @@ const IPTools = () => {
               <p className="text-muted-foreground mb-4">
                 Access national/regional models, AI-powered policy toolkit, and institutional policies database.
               </p>
-              <Button variant="outline" className="w-full">
+              <Button className="w-full">
                 Explore Policies
               </Button>
             </CardContent>

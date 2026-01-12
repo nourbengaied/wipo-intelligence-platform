@@ -64,7 +64,6 @@ const Reports = () => {
                           </span>
                         </div>
                         <Button
-                          variant="outline"
                           size="sm"
                           className="gap-2"
                           asChild
@@ -115,7 +114,6 @@ const Reports = () => {
                         </span>
                       </div>
                       <Button
-                        variant="outline"
                         size="sm"
                         className="gap-2"
                         asChild

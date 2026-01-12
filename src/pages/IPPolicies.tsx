@@ -109,7 +109,7 @@ const IPPolicies = () => {
               <p className="text-muted-foreground text-sm mb-4">
                 Customize the IP Policy Template for Academic and Research Institutions with AI assistance.
               </p>
-              <Button variant="default" className="w-full bg-accent hover:bg-accent/90">
+              <Button className="w-full">
                 Open Toolkit
               </Button>
             </CardContent>
@@ -133,7 +133,7 @@ const IPPolicies = () => {
               <p className="text-muted-foreground text-sm mb-4">
                 Browse and search through IP policies from institutions worldwide.
               </p>
-              <Button variant="outline" className="w-full">
+              <Button className="w-full">
                 Browse Database
               </Button>
             </CardContent>

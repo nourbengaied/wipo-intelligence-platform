@@ -2,10 +2,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Wrench, ArrowLeft } from "lucide-react";
+import { slugToTitle } from "@/lib/formatters";
 
 const CountryDetail = () => {
   const { country } = useParams();
   const navigate = useNavigate();
+
+  const countryName = country ? slugToTitle(country) : "";
 
   return (
     <div className="min-h-screen bg-gradient-hero">
@@ -21,7 +24,7 @@ const CountryDetail = () => {
 
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-primary mb-2">
-            {country?.replace(/-/g, " ")}
+            {countryName}
           </h1>
           <p className="text-muted-foreground text-lg">
             Select a resource category to explore
@@ -46,7 +49,7 @@ const CountryDetail = () => {
               <p className="text-muted-foreground mb-4">
                 Browse through publicly available IP reports, statistics, and analysis documents.
               </p>
-              <Button variant="outline" className="w-full">
+              <Button className="w-full">
                 View Reports
               </Button>
             </CardContent>

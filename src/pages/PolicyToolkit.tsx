@@ -13,6 +13,22 @@ interface Message {
   content: string;
 }
 
+// Helper function to render markdown-like formatting
+const renderFormattedText = (text: string) => {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={index} className="font-semibold">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+};
+
 const PolicyToolkit = () => {
   const { country } = useParams();
   const navigate = useNavigate();
@@ -494,7 +510,9 @@ Would you like me to help with any specific section, or shall I generate a summa
                           : "bg-muted"
                       }`}
                     >
-                      <p className="text-xs whitespace-pre-wrap leading-relaxed">{message.content}</p>
+                      <p className="text-xs whitespace-pre-wrap leading-relaxed">
+                        {renderFormattedText(message.content)}
+                      </p>
                     </div>
                   </div>
                 ))}
