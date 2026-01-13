@@ -1,5 +1,4 @@
-// Stubbed Bedrock service - AWS SDK removed to fix build issues
-// To enable AI features, you'll need to use Lovable Cloud with edge functions
+import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime";
 
 interface Message {
   role: "user" | "assistant";
@@ -13,9 +12,27 @@ export interface BedrockRequest {
   temperature?: number;
 }
 
+// Initialize Bedrock client with credentials from environment variables
+const getBedrockClient = () => {
+  const region = import.meta.env.VITE_AWS_REGION;
+  const accessKeyId = import.meta.env.VITE_AWS_ACCESS_KEY_ID;
+  const secretAccessKey = import.meta.env.VITE_AWS_SECRET_ACCESS_KEY;
+
+  if (!region || !accessKeyId || !secretAccessKey) {
+    throw new Error("AWS credentials not configured. Please check your environment variables.");
+  }
+
+  return new BedrockRuntimeClient({
+    region,
+    credentials: {
+      accessKeyId,
+      secretAccessKey,
+    },
+  });
+};
+
 /**
- * Stubbed AWS Bedrock Claude call - returns a placeholder message
- * To enable real AI functionality, consider using Lovable Cloud edge functions
+ * Call AWS Bedrock Claude model
  */
 export async function callBedrockClaude({
   messages,
@@ -23,9 +40,43 @@ export async function callBedrockClaude({
   maxTokens = 4096,
   temperature = 0.7,
 }: BedrockRequest): Promise<string> {
-  console.log("[Bedrock Stub] AI service not configured. Messages received:", messages.length);
-  
-  return "The AI assistant is currently not configured. To enable AI features, please set up Lovable Cloud with edge functions for secure API integration.";
+  try {
+    const client = getBedrockClient();
+    const modelId = import.meta.env.VITE_BEDROCK_MODEL_ID || "anthropic.claude-3-haiku-20240307-v1:0";
+
+    // Format messages for Claude API
+    const formattedMessages = messages.map(msg => ({
+      role: msg.role,
+      content: msg.content,
+    }));
+
+    const payload = {
+      anthropic_version: "bedrock-2023-05-31",
+      max_tokens: maxTokens,
+      system: systemPrompt,
+      messages: formattedMessages,
+      temperature,
+    };
+
+    const command = new InvokeModelCommand({
+      modelId,
+      contentType: "application/json",
+      accept: "application/json",
+      body: JSON.stringify(payload),
+    });
+
+    const response = await client.send(command);
+    const responseBody = JSON.parse(new TextDecoder().decode(response.body));
+
+    if (responseBody.content && responseBody.content.length > 0) {
+      return responseBody.content[0].text;
+    }
+
+    throw new Error("No response from Bedrock");
+  } catch (error) {
+    console.error("Error calling Bedrock:", error);
+    throw new Error(`Failed to call Bedrock: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
 }
 
 /**
