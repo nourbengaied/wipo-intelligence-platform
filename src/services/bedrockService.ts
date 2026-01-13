@@ -1,36 +1,5 @@
-import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime";
-
-// Helper function to log to both console and terminal (via console methods that show in Vite)
-const log = (emoji: string, label: string, data: any) => {
-  const message = `${emoji} ${label}`;
-  console.log(message, data);
-  // Also log as a formatted string for better terminal visibility
-  console.log(`\n${message}\n${JSON.stringify(data, null, 2)}\n`);
-};
-
-const logError = (emoji: string, label: string, data: any) => {
-  const message = `${emoji} ${label}`;
-  console.error(message, data);
-  console.error(`\n${message}\n${JSON.stringify(data, null, 2)}\n`);
-};
-
-// Log environment configuration on load
-log("🔧", "[Bedrock Config]", {
-  hasAccessKey: !!import.meta.env.VITE_AWS_ACCESS_KEY_ID,
-  hasSecretKey: !!import.meta.env.VITE_AWS_SECRET_ACCESS_KEY,
-  region: import.meta.env.VITE_AWS_REGION || "us-east-1",
-  modelId: import.meta.env.VITE_BEDROCK_MODEL_ID || "anthropic.claude-3-haiku-20240307-v1:0",
-  accessKeyPrefix: import.meta.env.VITE_AWS_ACCESS_KEY_ID?.substring(0, 8) + "...",
-});
-
-// Initialize the Bedrock client
-const client = new BedrockRuntimeClient({
-  region: import.meta.env.VITE_AWS_REGION || "us-east-1",
-  credentials: {
-    accessKeyId: import.meta.env.VITE_AWS_ACCESS_KEY_ID || "",
-    secretAccessKey: import.meta.env.VITE_AWS_SECRET_ACCESS_KEY || "",
-  },
-});
+// Stubbed Bedrock service - AWS SDK removed to fix build issues
+// To enable AI features, you'll need to use Lovable Cloud with edge functions
 
 interface Message {
   role: "user" | "assistant";
@@ -45,7 +14,8 @@ export interface BedrockRequest {
 }
 
 /**
- * Call AWS Bedrock Claude model with conversation history
+ * Stubbed AWS Bedrock Claude call - returns a placeholder message
+ * To enable real AI functionality, consider using Lovable Cloud edge functions
  */
 export async function callBedrockClaude({
   messages,
@@ -53,88 +23,9 @@ export async function callBedrockClaude({
   maxTokens = 4096,
   temperature = 0.7,
 }: BedrockRequest): Promise<string> {
-  const requestId = `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-  const startTime = Date.now();
+  console.log("[Bedrock Stub] AI service not configured. Messages received:", messages.length);
   
-  log("🚀", "[Bedrock Request]", {
-    requestId,
-    timestamp: new Date().toISOString(),
-    modelId: import.meta.env.VITE_BEDROCK_MODEL_ID || "anthropic.claude-3-haiku-20240307-v1:0",
-    messageCount: messages.length,
-    lastUserMessage: messages[messages.length - 1]?.content.substring(0, 100) + "...",
-    maxTokens,
-    temperature,
-  });
-
-  try {
-    // Prepare the request payload for Claude 3
-    const payload = {
-      anthropic_version: "bedrock-2023-05-31",
-      max_tokens: maxTokens,
-      temperature: temperature,
-      system: systemPrompt,
-      messages: messages.map(msg => ({
-        role: msg.role,
-        content: msg.content,
-      })),
-    };
-
-    // Use Claude 3 Haiku - faster and more cost-effective
-    const modelId = import.meta.env.VITE_BEDROCK_MODEL_ID || "anthropic.claude-3-haiku-20240307-v1:0";
-
-    log("📤", "[Bedrock Payload]", {
-      requestId,
-      payloadSize: JSON.stringify(payload).length,
-      systemPromptLength: systemPrompt.length,
-    });
-
-    const command = new InvokeModelCommand({
-      modelId: modelId,
-      contentType: "application/json",
-      accept: "application/json",
-      body: JSON.stringify(payload),
-    });
-
-    const response = await client.send(command);
-    const duration = Date.now() - startTime;
-    
-    // Parse the response
-    const responseBody = JSON.parse(new TextDecoder().decode(response.body));
-    
-    log("✅", "[Bedrock Response]", {
-      requestId,
-      duration: `${duration}ms`,
-      statusCode: response.$metadata.httpStatusCode,
-      awsRequestId: response.$metadata.requestId,
-      inputTokens: responseBody.usage?.input_tokens,
-      outputTokens: responseBody.usage?.output_tokens,
-      stopReason: responseBody.stop_reason,
-      responsePreview: responseBody.content?.[0]?.text?.substring(0, 100) + "...",
-    });
-    
-    // Extract the assistant's message
-    if (responseBody.content && responseBody.content.length > 0) {
-      log("📊", "[Bedrock Stats]", {
-        requestId,
-        totalDuration: `${duration}ms`,
-        charactersReceived: responseBody.content[0].text.length,
-        avgSpeed: `${(responseBody.content[0].text.length / (duration / 1000)).toFixed(0)} chars/sec`,
-      });
-      
-      return responseBody.content[0].text;
-    }
-    
-    throw new Error("No content in response");
-  } catch (error) {
-    const duration = Date.now() - startTime;
-    logError("❌", "[Bedrock Error]", {
-      requestId,
-      duration: `${duration}ms`,
-      error: error instanceof Error ? error.message : "Unknown error",
-      errorDetails: error,
-    });
-    throw new Error(`Failed to get response from Claude: ${error instanceof Error ? error.message : "Unknown error"}`);
-  }
+  return "The AI assistant is currently not configured. To enable AI features, please set up Lovable Cloud with edge functions for secure API integration.";
 }
 
 /**
