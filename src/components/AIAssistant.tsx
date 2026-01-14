@@ -68,7 +68,7 @@ const AIAssistant = ({ context }: AIAssistantProps) => {
     }
     
     if (context?.countryName) {
-      return `${baseMessage}\n\nYou're viewing **${context.countryName}**. **Choose a resource category** (Reports or IP Tools) to continue, or ask me about this country's IP resources.`;
+      return `${baseMessage}\n\nYou're viewing **${context.countryName}**. **Choose a resource category** (Reports or IES Products) to continue, or ask me about this country's IP resources.`;
     }
     
     if (context?.page === "policy-toolkit") {
@@ -84,7 +84,7 @@ const AIAssistant = ({ context }: AIAssistantProps) => {
     }
     
     if (context?.page === "ip-tools") {
-      return `${baseMessage}\n\n**Select an IP tool** to explore, or ask me about policy frameworks and available resources.`;
+      return `${baseMessage}\n\n**Select an IES product** to explore, or ask me about policy frameworks and available resources.`;
     }
 
     if (context?.page === "ip-policies") {
@@ -128,7 +128,7 @@ const AIAssistant = ({ context }: AIAssistantProps) => {
     if (context?.page) {
       const pageContext: Record<string, string> = {
         "country-selection": "The user is on the Country Selection page, browsing through the list of countries to explore IP resources and policies.",
-        "ip-tools": "The user is on the IP Tools page, exploring available tools and resources.",
+        "ip-tools": "The user is on the IES Products page, exploring available tools and resources.",
         "ip-policies": "The user is on the IP Policies page, looking at policy frameworks and templates.",
         "policy-toolkit": "The user is on the WIPO IP Policy Toolkit page - an AI-powered tool for customizing the IP Policy Template for Academic and Research Institutions. This toolkit helps users interactively customize policy articles, get drafting assistance, and generate institution-specific policy language.",
         "policy-model": "The user is viewing a National or Regional IP Policy Model - pre-existing policy frameworks specific to countries or regions.",
@@ -144,7 +144,7 @@ const AIAssistant = ({ context }: AIAssistantProps) => {
 - Browse all available countries
 - Search for specific countries
 - Learn about available resources for each country
-- Select a country to explore detailed IP tools, policies, and reports
+- Select a country to explore detailed IES products, policies, and reports
 
 Help users understand what resources are available and guide them in choosing which country to explore.`;
       }

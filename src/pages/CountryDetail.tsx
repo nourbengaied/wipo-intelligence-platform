@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, Wrench, ArrowLeft } from "lucide-react";
+import { Wrench, ArrowLeft } from "lucide-react";
 import { slugToTitle } from "@/lib/formatters";
 
 const CountryDetail = () => {
@@ -31,30 +31,7 @@ const CountryDetail = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          <Card 
-            className="hover:shadow-lg transition-all duration-300 cursor-pointer border-2 hover:border-primary"
-            onClick={() => navigate(`/external/country/${country}/reports`)}
-          >
-            <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center mb-4">
-                <FileText className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle className="text-2xl">Reports</CardTitle>
-              <CardDescription>
-                Access comprehensive reports and documentation
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-4">
-                Browse through publicly available IP reports, statistics, and analysis documents.
-              </p>
-              <Button className="w-full">
-                View Reports
-              </Button>
-            </CardContent>
-          </Card>
-
+        <div className="max-w-md mx-auto">
           <Card
             className="hover:shadow-lg transition-all duration-300 cursor-pointer border-2 hover:border-primary"
             onClick={() => navigate(`/external/country/${country}/ip-tools`)}
@@ -63,17 +40,17 @@ const CountryDetail = () => {
               <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center mb-4">
                 <Wrench className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="text-2xl">IP Tools</CardTitle>
+              <CardTitle className="text-2xl">IES Products</CardTitle>
               <CardDescription>
                 Intellectual Property resources and tools
               </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground mb-4">
-                Access specialized IP tools, benchbooks, and policy frameworks.
+                Access specialized IES products, benchbooks, and policy frameworks.
               </p>
               <Button variant="default" className="w-full">
-                Explore IP Tools
+                Explore IES Products
               </Button>
             </CardContent>
           </Card>

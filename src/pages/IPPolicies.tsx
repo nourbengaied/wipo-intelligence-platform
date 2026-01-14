@@ -23,7 +23,7 @@ const IPPolicies = () => {
           className="mb-6 hover:bg-secondary"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to IP Tools
+          Back to IES Products
         </Button>
 
         <div className="mb-8">

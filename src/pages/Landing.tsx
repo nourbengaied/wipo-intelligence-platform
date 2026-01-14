@@ -17,10 +17,10 @@ const Landing = () => {
             IES Bloom
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-2">
-            Innovation Ecosystem Solutions
+            Innovation Ecosystems Sector
           </p>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            WIPO's comprehensive platform for IP resources, country intelligence, and policy development
+            WIPO's platform for IP resources, country intelligence, and advanced insights
           </p>
         </div>
 
@@ -47,15 +47,7 @@ const Landing = () => {
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-center gap-2 text-foreground">
                     <BookOpen className="h-4 w-4 text-primary" />
-                    <span>IP Benchbooks & Resources</span>
-                  </li>
-                  <li className="flex items-center gap-2 text-foreground">
-                    <Users className="h-4 w-4 text-primary" />
-                    <span>Country-specific IP Tools</span>
-                  </li>
-                  <li className="flex items-center gap-2 text-foreground">
-                    <Globe className="h-4 w-4 text-primary" />
-                    <span>Regional Policy Models</span>
+                    <span>IES Products</span>
                   </li>
                 </ul>
 
@@ -82,10 +74,14 @@ const Landing = () => {
                 </div>
                 
                 <p className="text-muted-foreground mb-6">
-                  Dashboard-driven analytical workspace for mission preparation, strategic planning, and AI-assisted insights.
+                  AI platform for mission preparation, strategic planning, workflows, and insights.
                 </p>
 
                 <ul className="space-y-3 mb-8">
+                  <li className="flex items-center gap-2 text-foreground">
+                    <BookOpen className="h-4 w-4 text-accent" />
+                    <span>Knowledge Library</span>
+                  </li>
                   <li className="flex items-center gap-2 text-foreground">
                     <BarChart3 className="h-4 w-4 text-accent" />
                     <span>Country & Stakeholder Intelligence</span>
@@ -96,7 +92,7 @@ const Landing = () => {
                   </li>
                   <li className="flex items-center gap-2 text-foreground">
                     <BookOpen className="h-4 w-4 text-accent" />
-                    <span>IP Policy Drafting Workflows</span>
+                    <span>AI-Powered Workflows</span>
                   </li>
                 </ul>
 

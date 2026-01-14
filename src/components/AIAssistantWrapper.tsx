@@ -70,7 +70,7 @@ const AIAssistantWrapper = () => {
       }));
     }
 
-    // Add tools info if on IP tools page
+    // Add tools info if on IES products page
     if (page === "ip-tools") {
       pageData.tools = [
         {

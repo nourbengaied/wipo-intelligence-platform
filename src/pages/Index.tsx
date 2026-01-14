@@ -28,7 +28,7 @@ const Index = () => {
             IES Bloom
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            World Intellectual Property Organization - Access IP tools, benchbooks, and resources by country
+            World Intellectual Property Organization - Access IES products, benchbooks, and resources by country
           </p>
         </div>
 
